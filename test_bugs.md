@@ -171,7 +171,7 @@ Rect(0.00, 0.00, 200.00, 200.00)
 ```
 >>> import scene
 >>> scene.ShapeNode() #doctest:+ELLIPSIS
-<...SpriteNode...
+<...ShapeNode...
 
 ``` 
 
