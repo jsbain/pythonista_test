@@ -8,7 +8,7 @@ doctest.testfile('test_bugs.md')
 # version (not a bug)
 This is a stripped down version of pythonista_version.py from ccc.  Originally i was downloading this on the fly... but i couldn't get the code working in p3
 
-``` 
+```python
 >>> import editor
 >>> editor_oldfile=editor.get_path()
 >>> import os, platform, plistlib, scene, sys
@@ -27,7 +27,7 @@ Pythonista version info here (this is not an error)
 # convert point: fullscreen
 convert point and convert rect give values scaled incorrectly and relative to wrong corner, perhaps orientation dependent,when one view is None.  The current behavior seems... broken in new and different ways from the old behavior
 
-``` 
+```python
 >>> import ui,time
 >>> v=ui.View()
 >>> v.present()
@@ -41,9 +41,9 @@ Point(0.00, 10.00)
 >>> ui.convert_point(ui.convert_point((11,12),v,None),None,v)
 Point(11.00, 12.00)
 
-``` 
+```
 # convert point:sheet
-``` 
+```python 
 >>> time.sleep(1)
 >>> import ui,time
 >>> v=ui.View()
@@ -63,7 +63,7 @@ False
 ``` 
 
 # convert point:panel
-``` 
+```python
 >>> time.sleep(1)
 >>> import ui,time
 >>> v=ui.View()
@@ -80,7 +80,7 @@ Point(11.00, 12.00)
 ## panel view close
 close should close the tab if presented as a tab! 
 
-``` 
+```python
 >>> v.close()
 >>> time.sleep(1)
 >>> v.on_screen
@@ -88,7 +88,7 @@ False
 
 ``` 
 # popover
-``` 
+```python
 >>> time.sleep(1)
 >>> import ui,time
 >>> v=ui.View()
@@ -109,7 +109,7 @@ False
 ## popover_location does not accept ui.Point
 most other View methods were updated to allow this, but not present.  use case is converting from a touch.location to a popover, etc.  
 
-``` 
+```python
 >>> v.present('popover',popover_location=ui.Point(0,0))
 >>> v.close()
 
@@ -117,7 +117,7 @@ most other View methods were updated to allow this, but not present.  use case i
 # touch enabled
 simply cannot be changed 
 
-``` 
+```python
 >>> class CustomView(ui.View):
 ...	def __init__(self):
 ...		pass
@@ -132,7 +132,7 @@ False
 # editor newline mangling
 editor strips trailing newline from files
 
-``` 
+```python
 >>> import os, time
 >>> import tempfile
 >>> tmpfile=tempfile.NamedTemporaryFile(delete=False)
@@ -157,7 +157,7 @@ editor strips trailing newline from files
 ## tableview constructor arguments
 Tableview does not seem to support flex or frame in its constructor
 
-``` 
+```python
 >>> v=ui.TableView(frame=(0,0,200,200), flex='h')
 >>> v.flex
 'H'
@@ -168,10 +168,10 @@ Rect(0.00, 0.00, 200.00, 200.00)
 
 # scene things
 ## ShapeNode docs implies path can be None (otherwise, path should bewuired, not optional)
-```
+```python
 >>> import scene
 >>> scene.ShapeNode() #doctest:+ELLIPSIS
-<...SpriteNode...
+<...ShapeNode...
 
 ``` 
 
@@ -180,7 +180,7 @@ SpriteNode.texture docs says about texture:
 
 > If the value is None, the sprite is drawn as a colored rectangle using its color attribute. Otherwise, the texture is used to draw the sprite.
 
-``` 
+```python
 >>> scene.SpriteNode(texture=None,color=(0,1,1)) #doctest:+ELLIPSIS
 <...SpriteNode...
 
@@ -190,7 +190,7 @@ SpriteNode.texture docs says about texture:
 ## inset
 for Rect with negative width/height, most methods work normally, and min/max is computed correctly.  Most methods seem to standardize (for instance translate(0,0), or intersection with self results in a standardized rect.  inset works "backwards" for negative width/height, producing a larger rather than a smaller Rect.
 
-``` 
+```python
 >>> r=ui.Rect(0,0,-100,100)
 >>> abs(r.inset(0,10).width)
 80.0
@@ -200,7 +200,7 @@ for Rect with negative width/height, most methods work normally, and min/max is 
 ## ==
  also, == does not work as might be expected (ala CGRectEqualsRect) for negative width/height
 
-```  
+```python
 >>> r=ui.Rect(0,0,100,100)
 >>> r==r.translate(0,0) # works
 True
