@@ -1,0 +1,15 @@
+# Fullscreen ui.convert_point
+Fullscreen convert_point should basically match view and screen coords.  First, check origin
+	>>> import ui,time
+	>>> v=ui.View()
+	>>> v.bg_color=(1,1,1)
+	>>> v.present('fullscreen',hide_title_bar=True)
+	>>> time.sleep(3)
+	>>> ui.convert_point([0,0],v,None)
+	Point(0.00,0.00)
+	
+Next, check if sign convention/amplitude is correct
+	>>> ui.convert_point([0,0],v,None)-ui.convert_point([10,0],v,None)
+	Point(-10.00,0.00)
+	
+	>>> v.close()
